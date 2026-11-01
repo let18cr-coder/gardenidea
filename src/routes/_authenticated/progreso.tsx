@@ -4,7 +4,7 @@ import { useGarden } from "@/lib/garden-store";
 import { STAGES } from "@/lib/garden";
 import { PageHeader } from "@/components/garden/AppShell";
 
-export const Route = createFileRoute("/progreso")({
+export const Route = createFileRoute("/_authenticated/progreso")({
   head: () => ({
     meta: [
       { title: "Mi jardín floreciendo · Idea Garden" },

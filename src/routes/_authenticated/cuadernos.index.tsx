@@ -7,7 +7,7 @@ import { Cover } from "@/components/garden/covers";
 import { PageHeader } from "@/components/garden/AppShell";
 import { NotebookDialog } from "@/components/garden/NotebookDialog";
 
-export const Route = createFileRoute("/cuadernos/")({
+export const Route = createFileRoute("/_authenticated/cuadernos/")({
   head: () => ({
     meta: [
       { title: "Mis cuadernos · Idea Garden" },
