@@ -8,9 +8,9 @@ type EditorState = { open: boolean; idea?: Idea; notebookId?: string };
 type Store = {
   notebooks: Notebook[];
   ideas: Idea[];
-  saveIdea: (idea: Omit<Idea, "id" | "createdAt"> & { id?: string }) => void;
+  saveIdea: (idea: Omit<Idea, "id" | "createdAt"> & { id?: string | undefined }) => void;
   deleteIdea: (id: string) => void;
-  saveNotebook: (nb: Omit<Notebook, "id" | "createdAt"> & { id?: string }) => void;
+  saveNotebook: (nb: Omit<Notebook, "id" | "createdAt"> & { id?: string | undefined }) => void;
   deleteNotebook: (id: string) => void;
   editor: EditorState;
   openEditor: (opts?: { idea?: Idea; notebookId?: string }) => void;

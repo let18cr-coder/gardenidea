@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { IdeaGrid } from "./IdeaCard";
 import { cn } from "@/lib/utils";
 
-export function IdeaBoard({ ideas, showNotebook }: { ideas: Idea[]; showNotebook?: boolean }) {
+export function IdeaBoard({ ideas, showNotebook }: { ideas: Idea[]; showNotebook?: boolean | undefined }) {
   const [q, setQ] = useState("");
   const [stage, setStage] = useState<Stage | "all">("all");
 

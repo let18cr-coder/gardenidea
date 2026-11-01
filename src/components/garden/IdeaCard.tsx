@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 
-export function IdeaCard({ idea, showNotebook }: { idea: Idea; showNotebook?: boolean }) {
+export function IdeaCard({ idea, showNotebook }: { idea: Idea; showNotebook?: boolean | undefined }) {
   const { openEditor, deleteIdea, notebooks } = useGarden();
   const [confirm, setConfirm] = useState(false);
   const img = idea.image ? IMAGE_COVERS[idea.image] ?? idea.image : undefined;
@@ -78,7 +78,7 @@ export function IdeaCard({ idea, showNotebook }: { idea: Idea; showNotebook?: bo
   );
 }
 
-export function IdeaGrid({ ideas, showNotebook }: { ideas: Idea[]; showNotebook?: boolean }) {
+export function IdeaGrid({ ideas, showNotebook }: { ideas: Idea[]; showNotebook?: boolean | undefined }) {
   if (!ideas.length)
     return (
       <div className="paper-card flex flex-col items-center gap-2 p-10 text-center">

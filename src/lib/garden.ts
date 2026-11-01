@@ -23,8 +23,8 @@ export type Idea = {
   description: string;
   notebookId: string;
   tags: string[];
-  link?: string;
-  image?: string; // cover key or url
+  link?: string | undefined;
+  image?: string | undefined;
   stage: Stage;
   createdAt: number;
 };
