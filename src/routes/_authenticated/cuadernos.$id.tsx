@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/cuadernos/$id")({
+export const Route = createFileRoute("/_authenticated/cuadernos/$id")({
   head: () => ({
     meta: [
       { title: "Tablero de ideas · Idea Garden" },

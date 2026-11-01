@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/garden/AppShell";
 import { IdeaBoard } from "@/components/garden/IdeaBoard";
 
-export const Route = createFileRoute("/ideas")({
+export const Route = createFileRoute("/_authenticated/ideas")({
   head: () => ({
     meta: [
       { title: "Todas mis ideas · Idea Garden" },
