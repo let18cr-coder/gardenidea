@@ -10,33 +10,74 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IdeasRouteImport } from './routes/ideas'
+import { Route as ProgresoRouteImport } from './routes/progreso'
+import { Route as CuadernosIndexRouteImport } from './routes/cuadernos.index'
+import { Route as CuadernosIdRouteImport } from './routes/cuadernos.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IdeasRoute = IdeasRouteImport.update({
+  id: '/ideas',
+  path: '/ideas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgresoRoute = ProgresoRouteImport.update({
+  id: '/progreso',
+  path: '/progreso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CuadernosIndexRoute = CuadernosIndexRouteImport.update({
+  id: '/cuadernos/',
+  path: '/cuadernos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CuadernosIdRoute = CuadernosIdRouteImport.update({
+  id: '/cuadernos/$id',
+  path: '/cuadernos/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ideas': typeof IdeasRoute
+  '/progreso': typeof ProgresoRoute
+  '/cuadernos/$id': typeof CuadernosIdRoute
+  '/cuadernos/': typeof CuadernosIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ideas': typeof IdeasRoute
+  '/progreso': typeof ProgresoRoute
+  '/cuadernos/$id': typeof CuadernosIdRoute
+  '/cuadernos': typeof CuadernosIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ideas': typeof IdeasRoute
+  '/progreso': typeof ProgresoRoute
+  '/cuadernos/$id': typeof CuadernosIdRoute
+  '/cuadernos/': typeof CuadernosIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/ideas' | '/progreso' | '/cuadernos/$id' | '/cuadernos/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/ideas' | '/progreso' | '/cuadernos/$id' | '/cuadernos'
+  id:
+    '__root__' | '/' | '/ideas' | '/progreso' | '/cuadernos/$id' | '/cuadernos/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IdeasRoute: typeof IdeasRoute
+  ProgresoRoute: typeof ProgresoRoute
+  CuadernosIdRoute: typeof CuadernosIdRoute
+  CuadernosIndexRoute: typeof CuadernosIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +89,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ideas': {
+      id: '/ideas'
+      path: '/ideas'
+      fullPath: '/ideas'
+      preLoaderRoute: typeof IdeasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progreso': {
+      id: '/progreso'
+      path: '/progreso'
+      fullPath: '/progreso'
+      preLoaderRoute: typeof ProgresoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cuadernos/': {
+      id: '/cuadernos/'
+      path: '/cuadernos'
+      fullPath: '/cuadernos/'
+      preLoaderRoute: typeof CuadernosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cuadernos/$id': {
+      id: '/cuadernos/$id'
+      path: '/cuadernos/$id'
+      fullPath: '/cuadernos/$id'
+      preLoaderRoute: typeof CuadernosIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IdeasRoute: IdeasRoute,
+  ProgresoRoute: ProgresoRoute,
+  CuadernosIdRoute: CuadernosIdRoute,
+  CuadernosIndexRoute: CuadernosIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
