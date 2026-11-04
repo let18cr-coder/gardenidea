@@ -16,6 +16,7 @@ type Store = {
   editor: EditorState;
   openEditor: (opts?: { idea?: Idea; notebookId?: string }) => void;
   closeEditor: () => void;
+  updateIdeaLocal: (id: string, changes: Pick<Idea, "title" | "description">) => void;
 };
 
 const Ctx = createContext<Store | null>(null);
@@ -104,6 +105,7 @@ export function GardenProvider({ children }: { children: ReactNode }) {
     editor,
     openEditor: (opts) => setEditor({ open: true, ...opts }),
     closeEditor: () => setEditor({ open: false }),
+    updateIdeaLocal: (id, changes) => setIdeas(xs => xs.map(x => x.id === id ? { ...x, ...changes } : x)),
   };
 
   return <Ctx.Provider value={store}>{children}</Ctx.Provider>;

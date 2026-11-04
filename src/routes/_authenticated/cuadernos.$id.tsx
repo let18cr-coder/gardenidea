@@ -15,6 +15,8 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/_authenticated/cuadernos/$id")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Tablero de ideas · Idea Garden" },
       { name: "description", content: "Un tablero visual para las ideas de tu cuaderno." },
       { property: "og:title", content: "Tablero de ideas · Idea Garden" },

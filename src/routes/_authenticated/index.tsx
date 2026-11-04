@@ -9,6 +9,8 @@ import { IdeaGrid } from "@/components/garden/IdeaCard";
 export const Route = createFileRoute("/_authenticated/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Mi jardín · Idea Garden" },
       { name: "description", content: "Tu jardín de ideas: cuadernos, inspiración y progreso en un solo lugar." },
       { property: "og:title", content: "Mi jardín · Idea Garden" },

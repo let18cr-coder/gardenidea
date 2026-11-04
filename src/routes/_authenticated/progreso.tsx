@@ -7,6 +7,8 @@ import { PageHeader } from "@/components/garden/AppShell";
 export const Route = createFileRoute("/_authenticated/progreso")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Mi jardín floreciendo · Idea Garden" },
       { name: "description", content: "Mira cómo tus ideas crecen de semilla a flor." },
       { property: "og:title", content: "Mi jardín floreciendo · Idea Garden" },
