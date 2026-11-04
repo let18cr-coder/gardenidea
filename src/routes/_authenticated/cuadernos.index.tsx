@@ -10,6 +10,8 @@ import { NotebookDialog } from "@/components/garden/NotebookDialog";
 export const Route = createFileRoute("/_authenticated/cuadernos/")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Mis cuadernos · Idea Garden" },
       { name: "description", content: "Tu galería de cuadernos digitales con portadas personalizadas." },
       { property: "og:title", content: "Mis cuadernos · Idea Garden" },

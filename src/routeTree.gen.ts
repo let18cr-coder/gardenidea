@@ -16,7 +16,7 @@ import { Route as AuthenticatedIdeasRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedProgresoRouteImport } from './routes/_authenticated/progreso'
 import { Route as AuthenticatedCuadernosIndexRouteImport } from './routes/_authenticated/cuadernos.index'
 import { Route as AuthenticatedCuadernosIdRouteImport } from './routes/_authenticated/cuadernos.$id'
-import { Route as AuthenticatedIdeasIdeaIdRouteImport } from './routes/_authenticated/ideas.$ideaId'
+import { Route as AuthenticatedIdeasIdeaIdRouteImport } from './routes/_authenticated/ideas_.$ideaId'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
@@ -56,15 +56,15 @@ const AuthenticatedCuadernosIdRoute =
   } as any)
 const AuthenticatedIdeasIdeaIdRoute =
   AuthenticatedIdeasIdeaIdRouteImport.update({
-    id: '/$ideaId',
-    path: '/$ideaId',
-    getParentRoute: () => AuthenticatedIdeasRoute,
+    id: '/ideas_/$ideaId',
+    path: '/ideas/$ideaId',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
   '/auth': typeof AuthRoute
-  '/ideas': typeof AuthenticatedIdeasRouteWithChildren
+  '/ideas': typeof AuthenticatedIdeasRoute
   '/progreso': typeof AuthenticatedProgresoRoute
   '/cuadernos/$id': typeof AuthenticatedCuadernosIdRoute
   '/ideas/$ideaId': typeof AuthenticatedIdeasIdeaIdRoute
@@ -72,7 +72,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
-  '/ideas': typeof AuthenticatedIdeasRouteWithChildren
+  '/ideas': typeof AuthenticatedIdeasRoute
   '/progreso': typeof AuthenticatedProgresoRoute
   '/': typeof AuthenticatedIndexRoute
   '/cuadernos/$id': typeof AuthenticatedCuadernosIdRoute
@@ -83,11 +83,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
-  '/_authenticated/ideas': typeof AuthenticatedIdeasRouteWithChildren
+  '/_authenticated/ideas': typeof AuthenticatedIdeasRoute
   '/_authenticated/progreso': typeof AuthenticatedProgresoRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/cuadernos/$id': typeof AuthenticatedCuadernosIdRoute
-  '/_authenticated/ideas/$ideaId': typeof AuthenticatedIdeasIdeaIdRoute
+  '/_authenticated/ideas_/$ideaId': typeof AuthenticatedIdeasIdeaIdRoute
   '/_authenticated/cuadernos/': typeof AuthenticatedCuadernosIndexRoute
 }
 export interface FileRouteTypes {
@@ -117,7 +117,7 @@ export interface FileRouteTypes {
     | '/_authenticated/progreso'
     | '/_authenticated/'
     | '/_authenticated/cuadernos/$id'
-    | '/_authenticated/ideas/$ideaId'
+    | '/_authenticated/ideas_/$ideaId'
     | '/_authenticated/cuadernos/'
   fileRoutesById: FileRoutesById
 }
@@ -177,40 +177,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCuadernosIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/ideas/$ideaId': {
-      id: '/_authenticated/ideas/$ideaId'
-      path: '/$ideaId'
+    '/_authenticated/ideas_/$ideaId': {
+      id: '/_authenticated/ideas_/$ideaId'
+      path: '/ideas/$ideaId'
       fullPath: '/ideas/$ideaId'
       preLoaderRoute: typeof AuthenticatedIdeasIdeaIdRouteImport
-      parentRoute: typeof AuthenticatedIdeasRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
-interface AuthenticatedIdeasRouteChildren {
-  AuthenticatedIdeasIdeaIdRoute: typeof AuthenticatedIdeasIdeaIdRoute
-}
-
-const AuthenticatedIdeasRouteChildren: AuthenticatedIdeasRouteChildren = {
-  AuthenticatedIdeasIdeaIdRoute: AuthenticatedIdeasIdeaIdRoute,
-}
-
-const AuthenticatedIdeasRouteWithChildren =
-  AuthenticatedIdeasRoute._addFileChildren(AuthenticatedIdeasRouteChildren)
-
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedIdeasRoute: typeof AuthenticatedIdeasRouteWithChildren
+  AuthenticatedIdeasRoute: typeof AuthenticatedIdeasRoute
   AuthenticatedProgresoRoute: typeof AuthenticatedProgresoRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedCuadernosIdRoute: typeof AuthenticatedCuadernosIdRoute
+  AuthenticatedIdeasIdeaIdRoute: typeof AuthenticatedIdeasIdeaIdRoute
   AuthenticatedCuadernosIndexRoute: typeof AuthenticatedCuadernosIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedIdeasRoute: AuthenticatedIdeasRouteWithChildren,
+  AuthenticatedIdeasRoute: AuthenticatedIdeasRoute,
   AuthenticatedProgresoRoute: AuthenticatedProgresoRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedCuadernosIdRoute: AuthenticatedCuadernosIdRoute,
+  AuthenticatedIdeasIdeaIdRoute: AuthenticatedIdeasIdeaIdRoute,
   AuthenticatedCuadernosIndexRoute: AuthenticatedCuadernosIndexRoute,
 }
 

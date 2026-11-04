@@ -8,6 +8,8 @@ import { IdeaBoard } from "@/components/garden/IdeaBoard";
 export const Route = createFileRoute("/_authenticated/ideas")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Todas mis ideas · Idea Garden" },
       { name: "description", content: "Explora, busca y filtra todas las ideas de tu jardín." },
       { property: "og:title", content: "Todas mis ideas · Idea Garden" },

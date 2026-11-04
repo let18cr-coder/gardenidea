@@ -16,7 +16,7 @@ import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, A
 import { toast } from "sonner";
 
 const workspaceQuery = (id: string) => queryOptions({ queryKey: ["idea-workspace", id], queryFn: () => readWorkspace(id), staleTime: 0 });
-export const Route = createFileRoute("/_authenticated/ideas/$ideaId")({
+export const Route = createFileRoute("/_authenticated/ideas_/$ideaId")({
   loader: ({ context, params }) => context.queryClient.ensureQueryData(workspaceQuery(params.ideaId)),
   head: () => ({ meta: [
     { title: "Mi espacio de idea · Idea Garden" }, { name: "description", content: "Desarrolla tus ideas con notas, imágenes privadas y secciones personales." },

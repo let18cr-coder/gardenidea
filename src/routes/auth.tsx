@@ -11,6 +11,8 @@ import { Label } from "@/components/ui/label";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { title: "Entrar · Idea Garden" },
       { name: "description", content: "Inicia sesión o crea tu cuenta en Idea Garden." },
       { property: "og:title", content: "Entrar · Idea Garden" },
