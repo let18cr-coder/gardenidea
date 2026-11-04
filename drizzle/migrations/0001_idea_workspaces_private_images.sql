@@ -1,0 +1,6 @@
+ALTER TABLE public.ideas ADD COLUMN workspace jsonb NOT NULL DEFAULT '{"version":1,"sections":[]}'::jsonb;
+ALTER TABLE public.ideas ADD COLUMN workspace_revision integer NOT NULL DEFAULT 0;
+CREATE POLICY "idea images owner read" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'idea-images' AND (storage.foldername(name))[1] = auth.uid()::text AND EXISTS (SELECT 1 FROM public.ideas WHERE id::text = (storage.foldername(name))[2] AND user_id = auth.uid()));
+CREATE POLICY "idea images owner upload" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'idea-images' AND (storage.foldername(name))[1] = auth.uid()::text AND lower(storage.extension(name)) IN ('jpg','jpeg','png','webp','gif') AND EXISTS (SELECT 1 FROM public.ideas WHERE id::text = (storage.foldername(name))[2] AND user_id = auth.uid()));
+CREATE POLICY "idea images owner delete" ON storage.objects FOR DELETE TO authenticated USING (bucket_id = 'idea-images' AND (storage.foldername(name))[1] = auth.uid()::text);
+COMMENT ON COLUMN public.ideas.workspace IS 'Versioned optional rich notes, galleries, tasks, progress and links; image values are private Storage object paths.';

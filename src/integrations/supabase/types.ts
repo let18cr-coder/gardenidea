@@ -27,6 +27,8 @@ export type Database = {
           title: string
           updated_at: string
           user_id: string
+          workspace: Json
+          workspace_revision: number
         }
         Insert: {
           created_at?: string
@@ -40,6 +42,8 @@ export type Database = {
           title: string
           updated_at?: string
           user_id?: string
+          workspace?: Json
+          workspace_revision?: number
         }
         Update: {
           created_at?: string
@@ -53,6 +57,8 @@ export type Database = {
           title?: string
           updated_at?: string
           user_id?: string
+          workspace?: Json
+          workspace_revision?: number
         }
         Relationships: [
           {
