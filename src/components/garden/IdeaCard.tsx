@@ -9,6 +9,7 @@ import {
   AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
+import { Link } from "@tanstack/react-router";
 
 export function IdeaCard({ idea, showNotebook }: { idea: Idea; showNotebook?: boolean | undefined }) {
   const { openEditor, deleteIdea, notebooks } = useGarden();
@@ -39,7 +40,7 @@ export function IdeaCard({ idea, showNotebook }: { idea: Idea; showNotebook?: bo
             </button>
           </div>
         </div>
-        <h3 className="text-lg font-medium leading-snug">{idea.title}</h3>
+        <h3 className="text-lg font-medium leading-snug"><Link to="/ideas/$ideaId" params={{ ideaId: idea.id }} className="hover:text-primary hover:underline">{idea.title}</Link></h3>
         {idea.description && <p className="text-sm leading-relaxed text-muted-foreground">{idea.description}</p>}
         {idea.tags.length > 0 && (
           <ul className="flex flex-wrap gap-1.5" aria-label="Etiquetas">
